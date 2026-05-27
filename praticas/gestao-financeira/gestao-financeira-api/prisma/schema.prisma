@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./gestao_financeira.db"
+}
+
+model Category {
+  id           String        @id
+  name         String        @unique
+  displayName  String
+  icon         String
+  background   String
+  isIncome     Boolean       @default(false)
+  isDefault    Boolean       @default(false)
+  transactions Transaction[]
+}
+
+model Transaction {
+  id          String   @id
+  description String
+  value        Float
+  date        String
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+}
+
+model User {
+  id       String @id
+  name     String
+  email    String @unique
+  password String
+}

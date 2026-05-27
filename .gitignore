@@ -1,0 +1,7 @@
+node_modules/
+.expo/
+*.db
+*.db-journal
+.env
+dist/
+build/
